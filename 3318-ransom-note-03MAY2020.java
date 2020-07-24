@@ -27,3 +27,23 @@ Constraints:
 
 You may assume that both strings contain only lowercase letters.
 ************************************************************/
+
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int magazineArr[] = new int[26];
+        
+        for(int i=0; i<magazine.length(); i++) {
+            magazineArr[magazine.charAt(i)-'a']++;
+        }
+        boolean canConstructRansom = true;
+        
+        for(int i=0; i<ransomNote.length(); i++) {
+            if (magazineArr[ransomNote.charAt(i)-'a'] <= 0) {
+                canConstructRansom = false;
+                break;
+            }
+            magazineArr[ransomNote.charAt(i)-'a']--;
+        }
+        return canConstructRansom;
+    }
+}
