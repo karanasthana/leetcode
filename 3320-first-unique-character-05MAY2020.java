@@ -34,3 +34,23 @@ class Solution {
         return index;
     }
 }
+
+/************************************************************
+OPTIMAL SOLUTION
+************************************************************/
+
+class Solution {
+    public int firstUniqChar(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
+        int result = Integer.MAX_VALUE;
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            int first = s.indexOf(ch);
+            if (first != -1 && first == s.lastIndexOf(ch)) {
+                result = Math.min(result, first);
+            }
+        }
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+}
