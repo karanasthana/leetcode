@@ -18,3 +18,9 @@ Output: false
 Constraints:
 1 <= num <= 2^31 - 1
 ************************************************************/
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        int sqrt = (int)Math.sqrt(num);
+        return Math.pow(sqrt,2) == num;
+    }
+}
