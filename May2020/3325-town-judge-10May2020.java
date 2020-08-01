@@ -44,4 +44,48 @@ trust[i][0] != trust[i][1]
 1 <= trust[i][0], trust[i][1] <= N
 ************************************************************/
 class Solution {
+    public int findJudge(int N, int[][] trust) {
+        int[][] mapping = new int[N][N];
+        for(int i=0; i<trust.length; i++) {
+            // System.out.println(trust[i][0] +" trusts " + trust[i][1]);
+            mapping[trust[i][0]-1][trust[i][1]-1]++;
+        }
+        
+//         for(int i=0; i<N; i++) {
+//             for(int j=0; j<N; j++) {
+//                 System.out.print(mapping[i][j] + " ");
+//             }
+//             System.out.println();
+//         }
+        int suspectedTownJudge = -1;
+        boolean isValid = false;
+        for(int i=0; i<N; i++) {
+            isValid = true;
+            for(int j=0; j<N; j++) {
+                if (i==j && mapping[j][i] == 1) {
+                    isValid = false;
+                    break;
+                }
+                if (i != j && mapping[j][i] == 0) {
+                    isValid = false;
+                    break;
+                }
+            }
+            if (isValid == true) {
+                suspectedTownJudge = i;
+                break;
+            }
+        }
+        if (!isValid) {
+            return -1;
+        }
+
+        for (int i=0; i<N; i++) {
+            if (mapping[suspectedTownJudge][i] == 1) {
+                return -1;
+            }
+        }
+        
+        return (suspectedTownJudge + 1);
+    }
 }
