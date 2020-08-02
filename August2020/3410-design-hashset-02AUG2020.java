@@ -27,3 +27,37 @@ All values will be in the range of [0, 1000000].
 The number of operations will be in the range of [1, 10000].
 Please do not use the built-in HashSet library.
 ************************************************************/
+
+class MyHashSet {
+
+    /** Initialize your data structure here. */
+    ArrayList<Integer> myList;
+
+    public MyHashSet() {
+        myList = new ArrayList<Integer>();
+    }
+    
+    public void add(int key) {
+        if (myList.contains(key)) {
+            return;
+        }
+        myList.add(key);
+    }
+    
+    public void remove(int key) {
+        myList.remove(new Integer(key));
+    }
+    
+    /** Returns true if this set contains the specified element */
+    public boolean contains(int key) {
+        return myList.contains(key);
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
