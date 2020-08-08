@@ -21,36 +21,43 @@ Constraints:
 s consists only of printable ASCII characters.
 ************************************************************/
 
-class MyHashSet {
-
-    /** Initialize your data structure here. */
-    ArrayList<Integer> myList;
-
-    public MyHashSet() {
-        myList = new ArrayList<Integer>();
-    }
-    
-    public void add(int key) {
-        if (myList.contains(key)) {
-            return;
+class Solution {
+    public boolean isPalindrome(String str) {
+        int start=0;
+        int end=str.length()-1;
+        
+        str = str.toLowerCase();
+        
+        while(start<end) {
+            char s = str.charAt(start);
+            char e = str.charAt(end);
+            
+            while (!isAlphaNumeric(s) && start<end) {
+                start++;
+                s = str.charAt(start);
+            }
+            
+            while (!isAlphaNumeric(e) && start<end) {
+                end--;
+                e = str.charAt(end);
+            }
+            
+            if (s == e) {
+                start++;
+                end--;
+            } else {
+                return false;
+            }
         }
-        myList.add(key);
+        
+        return true;
     }
     
-    public void remove(int key) {
-        myList.remove(new Integer(key));
-    }
-    
-    /** Returns true if this set contains the specified element */
-    public boolean contains(int key) {
-        return myList.contains(key);
+    public boolean isAlphaNumeric(char a) {
+        int ascii = (int)a;
+        if ((ascii>=97 && ascii<=122) || (ascii>=48 && ascii<=57)) {
+            return true;
+        } 
+        return false;
     }
 }
-
-/**
- * Your MyHashSet object will be instantiated and called as such:
- * MyHashSet obj = new MyHashSet();
- * obj.add(key);
- * obj.remove(key);
- * boolean param_3 = obj.contains(key);
- */
