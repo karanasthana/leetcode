@@ -17,4 +17,22 @@ Follow up: Could you solve it without loops/recursion?
 ************************************************************/
 
 class Solution {
+    public boolean isPowerOfFour(int num) {
+        if (num == 1) {
+            return true;
+        }
+        
+        if (num <= 0) {
+            return false;
+        }
+        
+        return isPowerFour(num);
+    }
+    
+    public boolean isPowerFour(int num) {
+        if (num <= 4) {
+            return num % 4 == 0;
+        }
+        return num%4==0 && isPowerFour(num/4);
+    }
 }
