@@ -35,4 +35,14 @@ s is between "A" and "FXSHRXW".
 ************************************************************/
 
 class Solution {
+    public int titleToNumber(String s) {
+        int length = s.length();
+        double out = 0;
+        for(int i=length-1; i>=0; i--) {
+            char d = s.charAt(i);
+            int index = d - 'A' + 1;
+            out = out + (index * Math.pow(26,length-1-i));
+        }
+        return (int)out;
+    }
 }
